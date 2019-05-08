@@ -1,0 +1,31 @@
+{{#each errors}}
+    <div class="alert alert-danger">{{text}}</div>
+{{else}}
+
+{{/each}}
+
+<div class="card card-body">
+    <h3>Modifier Offre</h3>
+    <form action="/offres/{{offre.id}}?_method=PUT" method="POST">
+        <input type="hidden" name="_method" value="PUT">
+        <div class="form-group">
+            <label for="title">Titre</label>
+            <input type="text" class="form-control" name="title" value="{{offre.title}}" required>
+        </div>
+        <div class="form-group">
+            <label for="category">Categorie</label>
+            <select name="category" id="category" class="form-control">
+                <option active disabled>Selectionner une categorie</option>
+                <option>Vente</option>
+                <option>Location</option>
+                <option>TANT</option>
+                <option>BE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="localisation">Localisation</label>
+            <input type="text" class="form-control" name="localisation" value="{{offre.localisation}}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+    </form>
+</div>

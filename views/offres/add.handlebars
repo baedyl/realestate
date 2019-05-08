@@ -1,0 +1,30 @@
+{{#each errors}}
+    <div class="alert alert-danger">{{text}}</div>
+{{else}}
+
+{{/each}}
+
+<div class="card card-body">
+    <h3>Nouvelle Offre</h3>
+    <form action="/offres" method="POST">
+        <div class="form-group">
+            <label for="title">Titre</label>
+            <input type="text" class="form-control" name="title" value="" required>
+        </div>
+        <div class="form-group">
+            <label for="category">Categorie</label>
+            <select name="category" id="category" class="form-control">
+                <option active disabled>Selectionner une categorie</option>
+                <option>Vente</option>
+                <option>Location</option>
+                <option>TANT</option>
+                <option>BE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="localisation">Localisation</label>
+            <input type="text" class="form-control" name="localisation" value="" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+</div>
