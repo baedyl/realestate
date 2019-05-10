@@ -1,10 +1,9 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-3">
     <div class="container">
         <div class="logo_container">
-            <a href="/">
+            <a href="#">
                 <div class="logo">
-                    <img src="../../images/logo.png" alt="logo">
-                    <span>ton logo</span>
+                    <img src="/img/logo.png" alt="logo" class="logo">
                 </div>
             </a>
         </div>
@@ -28,13 +27,25 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Offres</a>
-                    <div class="dropdown-menu">
-                        <a href="/offres" class="dropdown-item">Offres</a>
-                        <a href="/offres/add" class="dropdown-item">Ajouter Offre</a>
-                    </div>
+                {{#if user}}
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Offres</a>
+                        <div class="dropdown-menu">
+                            <a href="/offres" class="dropdown-item">Offres</a>
+                            <a href="/offres/add" class="dropdown-item">Ajouter Offre</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/users/logout">Logout</a>
                 </li>
+                {{else}}
+                    <li class="nav-item">
+                        <a href="/users/login" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/users/register" class="nav-link">Register</a>
+                    </li>
+                {{/if}}
             </ul>
 
             <!-- Phone Home -->

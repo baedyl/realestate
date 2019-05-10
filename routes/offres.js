@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const {ensureAuthenticated} = require('../helpers/auth');
 
 // Load Offer Model
 require('../models/Offre');
 const Offre = mongoose.model('offres');
 
 // Offer Index Page
-router.get('/', (rea, res) => {
+router.get('/', ensureAuthenticated, (req, res) => {
     Offre.find({})
         .sort({date: 'desc'})
         .then(offres => {
@@ -19,12 +20,12 @@ router.get('/', (rea, res) => {
 })
 
 // Add Offer form
-router.get('/add', (req, res) => {
+router.get('/add', ensureAuthenticated, (req, res) => {
     res.render('offres/add');
 })
 
 // Process Add Offer Form
-router.post('/', (req, res) => {
+router.post('/', ensureAuthenticated, (req, res) => {
     let errors = [];
 
     if (!req.body.title) {
@@ -44,7 +45,8 @@ router.post('/', (req, res) => {
         const newOffre = {
             title: req.body.title,
             category: req.body.category,
-            localisation: req.body.localisation
+            localisation: req.body.localisation,
+            user: req.user.id
         } 
         new Offre(newOffre)
             .save()
@@ -56,7 +58,7 @@ router.post('/', (req, res) => {
 })
 
 // Edit Offer Form
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
     Offre.findOne({
         _id: req.params.id
     })
@@ -69,7 +71,7 @@ router.get('/edit/:id', (req, res) => {
 })
 
 // Edit Form process
-router.put('/:id', (req, res) => {
+router.put('/:id', ensureAuthenticated, (req, res) => {
     Offre.findOne({
         _id: req.params.id
     })
@@ -88,7 +90,7 @@ router.put('/:id', (req, res) => {
 })
 
 // Delete Offer
-router.delete('/:id', (req, res) => {
+router.delete('/:id', ensureAuthenticated, (req, res) => {
     Offre.deleteOne({
         _id: req.params.id
     })
