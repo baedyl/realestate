@@ -17,8 +17,11 @@ const users = require('./routes/users');
 // Passport Config
 require('./config/passport')(passport);
 
+// DB Config
+const db = require('./config/database');
+
 // Connect to mongoose
-mongoose.connect('mongodb://localhost/realestate-dev',  {
+mongoose.connect(db.mongoURI,  {
     useNewUrlParser: true
 })
     .then(() => console.log("MongoDB Connected"))
@@ -84,7 +87,7 @@ app.use('/offres', offres);
 app.use('/users', users);
 
 
-const port = 7000 || 8000;
+const port = process.env.PORT || 7000;
 //const port = 8000;
 
 app.listen(port, () => {
