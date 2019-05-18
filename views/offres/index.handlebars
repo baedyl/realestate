@@ -1,5 +1,34 @@
+<div class="row featured_row">
 {{#each offres}}
-    <div class="card card-body mb-2">
+    <div class="col-lg-4 featured_card_col">
+        <div class="featured_card_container">
+            <div class="card featured_card trans_300">
+                <!--<div class="featured_panel">nouveau</div>-->
+                <img class="card-img-top" src="img/featured_2.jpg" alt="">
+                <div class="card-body">
+                    <div class="card-title"><a href="#">{{title}}</a></div>
+                    <div class="card-text">Une description courte de l'offre specifique et specificites.</div>
+                    <div class="room_tags">
+                        <span class="room_tag"><a href="#">{{category}}</a></span>
+                        <span class="room_tag"><a href="#">{{localisation}}</a></span>
+                    </div>
+                    <a class="btn btn-dark btn-block mb-2" href="/offres/edit/{{id}}">Modifier</a>
+                    <form action="/offres/{{id}}?_method=DELETE" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="submit" value="Supprimer" class="btn btn-danger btn-block">
+                    </form>
+                </div>
+                <div class="featured_card_box d-flex flex-row align-items-center trans_300">
+                    <img src="img/tag.svg" alt="">
+                    <div class="featured_card_box_content">
+                        <div class="featured_card_price_title">{{category}}</div>
+                        <div class="featured_card_price">25,000,000 XAF</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="card card-body mb-2">
         <h4>{{title}}</h4>
         <p>{{category}}, {{localisation}}</p>
         <a class="btn btn-dark btn-block mb-2" href="/offres/edit/{{id}}">Modifier</a>
@@ -8,8 +37,9 @@
             <input type="submit" value="Supprimer" class="btn btn-danger btn-block">
         </form>
 
-    </div>
+    </div>-->
 {{else}}
     <p>Aucune offre disponible</p>
 
 {{/each}}
+</div>

@@ -13,6 +13,8 @@ const app = express();
 // Load Routes
 const offres = require('./routes/offres');
 const users = require('./routes/users');
+const about = require('./routes/about');
+const contact = require('./routes/contact');
 
 // Passport Config
 require('./config/passport')(passport);
@@ -77,14 +79,11 @@ app.use(function(req, res, next) {
     next();
 });
 
-// About Route
-app.get('/about', (req, res) => {
-    res.send('about');
-})
-
 // Use Routes
 app.use('/offres', offres);
 app.use('/users', users);
+app.use('/about', about);
+app.use('/contact', contact);
 
 
 const port = process.env.PORT || 7000;
